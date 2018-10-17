@@ -1,9 +1,9 @@
 const mongoose = require ("mongoose");
 const Schema = mongoose.Schema;
 
-const OrganizacionSchema = new Schema ( {
+const organizacionSchema = new Schema ({
   name: String,
-  level: {type: String, enum: ["Cutre", "Ni pa ti ni pa mi", "Tocha"],
+  level: {type: String, enum: ["Cutre", "Ni pa ti ni pa mi", "Tocha"]},
   origin: String,
   catchPhrase: String,
   description: String,

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.Types.ObjectId;
+const ObjectId = Schema.Types.ObjectId;
 
 const follonSchema = new Schema({
     nombre: String,
