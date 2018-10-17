@@ -1,17 +1,14 @@
 const createError = require('http-errors');
 const express = require('express');
-const app = express();
+const layouts = require('express-ejs-layouts');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-const layouts = require('express-ejs-layouts');
 
-const indexRouter = require('./routes/index');
-const follonesRouter = require('./routes/follones');
-const mafiasRouter = require('./routes/mafias');
-const perfilRouter = require('./routes/perfil');
+const app = express();
 
+//mongoose connection
 mongoose.connect('mongodb://localhost/celebritiesdb')
   .then(() => {
     console.log('Connected to Mongo!');
@@ -19,11 +16,17 @@ mongoose.connect('mongodb://localhost/celebritiesdb')
     console.error('Error connecting to mongo', err);
   });
 
+const indexRouter = require('./routes/index');
+const registerRouter = require('./routes/register');
+const broncasRouter = require('./routes/follones');
+const mafiasRouter = require('./routes/mafias');
+const perfilRouter = require('./routes/perfil');
+
 // view engine setup
 app.use(layouts);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.set('layout', 'layouts/main')
+app.set('layout', 'layouts/main');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,7 +35,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/follones', follonesRouter);
+app.use('/register', registerRouter);
+app.use('/follones', broncasRouter);
 app.use('/mafias', mafiasRouter);
 app.use('/perfil', perfilRouter);
 
