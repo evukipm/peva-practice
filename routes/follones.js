@@ -12,6 +12,6 @@ router.get('/', (req, res, next) => {
     res.render('follones', {follones});
   })
   .catch(error => {
-    
+    console.log(error)
   })
 })

@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -11,8 +12,6 @@ const follonesRouter = require('./routes/follones');
 const mafiasRouter = require('./routes/mafias');
 const perfilRouter = require('./routes/perfil');
 
-
-const app = express();
 mongoose.connect('mongodb://localhost/celebritiesdb')
   .then(() => {
     console.log('Connected to Mongo!');
